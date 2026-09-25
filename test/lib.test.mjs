@@ -62,3 +62,12 @@ test('drops items older than the retention window', () => {
   const { items } = mergeItems([], parseFeed(fx('rss.xml'), 'Test'), now);
   assert.equal(items.length, 0);
 });
+
+test('does not re-add articles that are already too old to keep', () => {
+  const now = Date.parse('2026-09-30T20:00:00Z');
+  const fresh = parseFeed(fx('rss.xml'), 'Test');
+  const first = mergeItems([], fresh, now);
+  const second = mergeItems(first.items, fresh, now + 60000);
+  assert.equal(first.added.length, 0);
+  assert.equal(second.added.length, 0);
+});

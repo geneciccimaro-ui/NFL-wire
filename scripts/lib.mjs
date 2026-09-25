@@ -226,7 +226,10 @@ export function mergeItems(previous, fresh, now, { keepHours = 72, maxItems = 80
   const byId = new Map(previous.map((i) => [i.id, i]));
   const byTitle = new Map(previous.map((i) => [i.title.toLowerCase(), i]));
   const added = [];
+  const cutoff = now - keepHours * 3600e3;
   for (const f of fresh) {
+    // Skip articles already too old to keep, so they aren't re-added as "new" on every check.
+    if (f.published && f.published < cutoff) continue;
     const id = itemId(f.link);
     if (byId.has(id) || byTitle.has(f.title.toLowerCase())) continue;
     // Feeds sometimes have missing or future dates; never trust a date later than now.
@@ -240,7 +243,6 @@ export function mergeItems(previous, fresh, now, { keepHours = 72, maxItems = 80
     byTitle.set(f.title.toLowerCase(), item);
     added.push(item);
   }
-  const cutoff = now - keepHours * 3600e3;
   const items = [...byId.values()]
     .filter((i) => i.time >= cutoff)
     .sort((a, b) => b.time - a.time)
