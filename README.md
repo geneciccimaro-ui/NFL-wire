@@ -21,7 +21,7 @@ It's free to run: GitHub runs the checker and hosts the app, and the free **ntfy
 GitHub Actions (checks about once a minute)   iPhone
 ┌───────────────────────────────────┐         ┌──────────────────────────────┐
 │ scripts/fetch-news.mjs            │  push   │ ntfy app  → 🔔 alerts         │
-│  • 6 Eagles + 10 NFL news sources ├────────▶│                              │
+│  • Eagles + NFL news sources      ├────────▶│                              │
 │  • ESPN schedule, live score,     │         │ Eagles Wire (home screen app)│
 │    roster                         │  web    │  🦅 Eagles  🏈 League         │
 │  • merge duplicate stories        ├────────▶│  📰 Briefing  ⚙️ Settings     │
