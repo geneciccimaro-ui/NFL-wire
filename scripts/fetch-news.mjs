@@ -24,8 +24,10 @@ const env = process.env;
 async function fetchSource(src) {
   const res = await fetch(src.url, {
     headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; NFLNewsTracker/1.0; personal use)',
-      Accept: 'application/rss+xml, application/atom+xml, application/xml, text/xml, */*',
+      // Some news sites turn away requests that don't look like a normal browser.
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+      Accept: 'application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.9, */*;q=0.8',
+      'Accept-Language': 'en-US,en;q=0.9',
     },
     signal: AbortSignal.timeout(15000),
   });
@@ -93,7 +95,7 @@ async function check(prev, roster) {
       fresh.push(...r.value);
       return { name: src.name, ok: true, count: r.value.length };
     }
-    return { name: src.name, ok: false, error: String(r.reason?.message || r.reason) };
+    return { name: src.name, ok: false, error: String(r.reason?.cause?.code || r.reason?.message || r.reason) };
   });
   if (!gamesResult.ok) console.warn('ESPN schedule:', gamesResult.e.message);
   const focus = gamesResult.ok ? gamesResult.v : prev?.focus || { team: FOCUS.abbr, name: FOCUS.name, record: '', standing: '', games: [] };
@@ -163,7 +165,7 @@ async function check(prev, roster) {
     gameAlerted: [...gameAlerted].filter((k) => gameIds.has(k.split(':')[0])),
   };
   await writeFile(OUT, JSON.stringify(out));
-  const down = sources.filter((s) => !s.ok).map((s) => s.name);
+  const down = sources.filter((s) => !s.ok).map((s) => `${s.name} (${s.error})`);
   console.log(`${new Date(now).toISOString()} ${fresh.length} fetched, ${added.length} new, ${stories.length} stories, ${outgoing.length} alerts${down.length ? `; down: ${down.join(', ')}` : ''}`);
   return out;
 }
