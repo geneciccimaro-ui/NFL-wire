@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0b1220"/>
+  <g transform="translate(256 236) rotate(-35)">
+    <ellipse rx="170" ry="100" fill="#8a4b22"/>
+    <ellipse rx="170" ry="100" fill="none" stroke="#5e3114" stroke-width="10"/>
+    <path d="M-120 -60 Q-100 0 -120 60 M120 -60 Q100 0 120 60" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <line x1="-60" y1="0" x2="60" y2="0" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+    <g stroke="#fff" stroke-width="9" stroke-linecap="round">
+      <line x1="-40" y1="-16" x2="-40" y2="16"/><line x1="-20" y1="-16" x2="-20" y2="16"/>
+      <line x1="0" y1="-16" x2="0" y2="16"/><line x1="20" y1="-16" x2="20" y2="16"/><line x1="40" y1="-16" x2="40" y2="16"/>
+    </g>
+  </g>
+  <rect x="96" y="392" width="320" height="64" rx="14" fill="#ff3b3b"/>
+  <text x="256" y="438" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="40" fill="#fff" letter-spacing="3">BREAKING</text>
+</svg>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NFL Wire</title>
+  <meta name="description" content="Breaking NFL news from every major site, in one place.">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="NFL Wire">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="ball">🏈</span> NFL Wire</div>
+    <button id="refresh" class="icon-btn" aria-label="Refresh">↻</button>
+  </header>
+  <div id="status" class="status"></div>
+
+  <main>
+    <section id="view-live" class="view active" aria-label="Latest news">
+      <div id="team-chips" class="chips"></div>
+      <ol id="feed" class="feed"></ol>
+    </section>
+
+    <section id="view-brief" class="view" aria-label="Briefing">
+      <article id="brief" class="brief"></article>
+    </section>
+
+    <section id="view-settings" class="view" aria-label="Settings">
+      <div class="panel">
+        <h2>My team</h2>
+        <p class="muted">Your team's stories get highlighted and show up first in the Briefing.</p>
+        <select id="fav-team"><option value="">No favorite</option></select>
+      </div>
+      <div class="panel">
+        <h2>Push alerts</h2>
+        <p>Alerts come through the free <b>ntfy</b> app:</p>
+        <ol class="steps">
+          <li>Install <a href="https://apps.apple.com/app/ntfy/id1625396347" target="_blank" rel="noopener">ntfy from the App Store</a>.</li>
+          <li>Open it, tap <b>+</b>, and type the topic name your parent gave you.</li>
+          <li>Allow notifications when it asks.</li>
+        </ol>
+      </div>
+      <div class="panel">
+        <h2>Add to Home Screen</h2>
+        <p class="muted">In Safari tap the Share button, then <b>Add to Home Screen</b>. NFL Wire then opens full screen like a regular app.</p>
+      </div>
+      <div class="panel">
+        <h2>Sources</h2>
+        <ul id="sources" class="sources"></ul>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabs">
+    <button data-view="live" class="active"><span>⚡</span>Latest</button>
+    <button data-view="brief"><span>📰</span>Briefing</button>
+    <button data-view="settings"><span>⚙️</span>Settings</button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
