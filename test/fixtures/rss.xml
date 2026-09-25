@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel><title>Test NFL</title>
+<item>
+  <title><![CDATA[BREAKING: Cowboys trade star WR to Bengals, per sources]]></title>
+  <link>https://example.com/cowboys-trade?utm_source=rss&amp;id=7</link>
+  <description><![CDATA[<p>The Dallas Cowboys have agreed to trade their top receiver to Cincinnati.</p><img src="https://example.com/a.jpg">]]></description>
+  <pubDate>Thu, 24 Sep 2026 18:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Chiefs beat Raiders 31&#8211;17 &amp; stay unbeaten</title>
+  <link>https://example.com/chiefs-raiders</link>
+  <description>Recap of the game.</description>
+  <pubDate>Thu, 24 Sep 2026 17:00:00 GMT</pubDate>
+  <media:content url="https://example.com/b.jpg" medium="image"/>
+</item>
+</channel></rss>

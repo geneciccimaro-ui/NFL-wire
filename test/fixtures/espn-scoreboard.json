@@ -1,0 +1,9 @@
+{"events":[
+ {"id":"999","date":"2026-09-27T17:00Z","competitions":[{"status":{"type":{"state":"in"}},"competitors":[{"homeAway":"home","team":{"abbreviation":"KC"},"score":"7"},{"homeAway":"away","team":{"abbreviation":"LV"},"score":"3"}]}]},
+ {"id":"402","date":"2026-09-27T20:25Z","week":{"number":3},"competitions":[{"broadcasts":[{"names":["CBS"]}],
+   "status":{"period":2,"displayClock":"5:32","type":{"state":"in","detail":"5:32 - 2nd Quarter","shortDetail":"5:32 - 2nd"}},
+   "situation":{"downDistanceText":"2nd & 7 at NYG 18","possession":"21","isRedZone":true,"lastPlay":{"text":"Saquon Barkley 12 yd run"}},
+   "competitors":[
+     {"homeAway":"home","team":{"id":"19","abbreviation":"NYG","shortDisplayName":"Giants"},"score":"3"},
+     {"homeAway":"away","id":"21","team":{"id":"21","abbreviation":"PHI","shortDisplayName":"Eagles"},"score":"14"}]}]}
+]}

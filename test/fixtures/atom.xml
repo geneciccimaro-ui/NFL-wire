@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Atom NFL</title>
+<entry>
+  <title>Cowboys trade WR to Bengals in stunning deal</title>
+  <link rel="alternate" href="https://atom.example.com/cowboys-bengals-trade"/>
+  <published>2026-09-24T18:10:00Z</published>
+  <summary type="html">&lt;p&gt;Dallas sends its star receiver to Cincinnati.&lt;/p&gt;</summary>
+</entry>
+</feed>

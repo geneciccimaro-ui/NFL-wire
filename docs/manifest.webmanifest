@@ -1,0 +1,15 @@
+{
+  "name": "Eagles Wire",
+  "short_name": "Eagles Wire",
+  "description": "Breaking Eagles and NFL news, live scores and schedule.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#004c54",
+  "theme_color": "#004c54",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
