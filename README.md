@@ -2,7 +2,7 @@
 
 A breaking-news tracker for an iPhone, built around the **Philadelphia Eagles** and also covering the rest of the NFL.
 
-About once a minute it checks Eagles-only news sources, 10 league-wide NFL sources, and ESPN's live scores and schedule. Then it:
+About once a minute it checks Eagles-only and league-wide NFL news sources (including ESPN, NFL.com, SI and the Philly papers through Google News), plus ESPN's live scores and schedule. Then it:
 
 - **Buzzes his phone for every real Eagles story**, not just the huge ones: signings, cuts, injuries, practice reports, coaching news. It recognizes Eagles stories even when the headline only names a player ("Jalen Hurts limited at practice"), because it loads the current roster automatically.
 - **Covers game day:** a reminder 1 hour before kickoff, then kickoff, **every score** ("🦅 EAGLES TOUCHDOWN! Eagles 14, Giants 3"), halftime and the final.
@@ -21,7 +21,7 @@ It's free to run: GitHub runs the checker and hosts the app, and the free **ntfy
 GitHub Actions (checks about once a minute)   iPhone
 ┌───────────────────────────────────┐         ┌──────────────────────────────┐
 │ scripts/fetch-news.mjs            │  push   │ ntfy app  → 🔔 alerts         │
-│  • 6 Eagles + 10 NFL news sources ├────────▶│                              │
+│  • Eagles + NFL news sources      ├────────▶│                              │
 │  • ESPN schedule, live score,     │         │ Eagles Wire (home screen app)│
 │    roster                         │  web    │  🦅 Eagles  🏈 League         │
 │  • merge duplicate stories        ├────────▶│  📰 Briefing  ⚙️ Settings     │
