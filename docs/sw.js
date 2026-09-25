@@ -1,6 +1,6 @@
 // Keeps the app opening instantly and working offline with the last news it saw.
-const CACHE = 'nfl-wire-v1';
-const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon.svg'];
+const CACHE = 'eagles-wire-v2';
+const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'espn.js', 'manifest.webmanifest', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon.svg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

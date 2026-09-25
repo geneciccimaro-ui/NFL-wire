@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>NFL Wire</title>
-  <meta name="description" content="Breaking NFL news from every major site, in one place.">
-  <meta name="theme-color" content="#0b1220">
+  <title>Eagles Wire</title>
+  <meta name="description" content="Breaking Eagles and NFL news, live scores and schedule, in one place.">
+  <meta name="theme-color" content="#004c54">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="NFL Wire">
+  <meta name="apple-mobile-web-app-title" content="Eagles Wire">
   <link rel="apple-touch-icon" href="icons/icon-180.png">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
@@ -17,14 +17,30 @@
 </head>
 <body>
   <header class="top">
-    <div class="brand"><span class="ball">🏈</span> NFL Wire</div>
+    <div class="brand"><span class="ball">🦅</span> Eagles Wire</div>
     <button id="refresh" class="icon-btn" aria-label="Refresh">↻</button>
   </header>
   <div id="status" class="status"></div>
 
   <main>
-    <section id="view-live" class="view active" aria-label="Latest news">
-      <div id="team-chips" class="chips"></div>
+    <section id="view-eagles" class="view active" aria-label="Eagles">
+      <div id="team-head" class="team-head"></div>
+      <div id="game-card"></div>
+      <div class="seg" id="eagles-seg">
+        <button data-sub="news" class="on">News</button>
+        <button data-sub="schedule">Schedule</button>
+      </div>
+      <div id="eagles-news">
+        <div id="eagles-chips" class="chips"></div>
+        <ol id="eagles-feed" class="feed"></ol>
+      </div>
+      <div id="eagles-schedule" hidden>
+        <ol id="schedule" class="schedule"></ol>
+      </div>
+    </section>
+
+    <section id="view-live" class="view" aria-label="Around the league">
+      <div id="league-chips" class="chips"></div>
       <ol id="feed" class="feed"></ol>
     </section>
 
@@ -34,11 +50,6 @@
 
     <section id="view-settings" class="view" aria-label="Settings">
       <div class="panel">
-        <h2>My team</h2>
-        <p class="muted">Your team's stories get highlighted and show up first in the Briefing.</p>
-        <select id="fav-team"><option value="">No favorite</option></select>
-      </div>
-      <div class="panel">
         <h2>Push alerts</h2>
         <p>Alerts come through the free <b>ntfy</b> app:</p>
         <ol class="steps">
@@ -46,10 +57,11 @@
           <li>Open it, tap <b>+</b>, and type the topic name your parent gave you.</li>
           <li>Allow notifications when it asks.</li>
         </ol>
+        <p class="muted">You'll get: every real Eagles story (moves, injuries, coaching), game day reminders, kickoff, every Eagles score, halftime and the final, plus the biggest news from around the league.</p>
       </div>
       <div class="panel">
         <h2>Add to Home Screen</h2>
-        <p class="muted">In Safari tap the Share button, then <b>Add to Home Screen</b>. NFL Wire then opens full screen like a regular app.</p>
+        <p class="muted">In Safari tap the Share button, then <b>Add to Home Screen</b>. Eagles Wire then opens full screen like a regular app.</p>
       </div>
       <div class="panel">
         <h2>Sources</h2>
@@ -59,11 +71,12 @@
   </main>
 
   <nav class="tabs">
-    <button data-view="live" class="active"><span>⚡</span>Latest</button>
+    <button data-view="eagles" class="active"><span>🦅</span>Eagles</button>
+    <button data-view="live"><span>🏈</span>League</button>
     <button data-view="brief"><span>📰</span>Briefing</button>
     <button data-view="settings"><span>⚙️</span>Settings</button>
   </nav>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

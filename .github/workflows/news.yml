@@ -1,8 +1,8 @@
-name: Crawl NFL news
+name: Check Eagles & NFL news
 
 on:
   schedule:
-    - cron: '*/5 * * * *'   # every 5 minutes (GitHub sometimes runs it a few minutes late)
+    - cron: '*/5 * * * *'   # a new job every 5 minutes; each one re-checks every minute
   workflow_dispatch:         # lets you run it by hand from the Actions tab
   push:
     branches: [main]
@@ -29,7 +29,7 @@ jobs:
   crawl:
     needs: test
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 9
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -42,12 +42,15 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
 
-      - name: Crawl feeds and send alerts
+      - name: Check news and scores every minute, send alerts
         run: node scripts/fetch-news.mjs
         env:
+          RUN_SECONDS: ${{ vars.RUN_SECONDS || '240' }}
+          POLL_SECONDS: ${{ vars.POLL_SECONDS || '60' }}
           PREVIOUS_URL: ${{ steps.pages.outputs.base_url }}/news.json
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          ALERT_TEAMS: ${{ vars.ALERT_TEAMS }}
+          ALERT_LEAGUE: ${{ vars.ALERT_LEAGUE }}
+          GAME_ALERTS: ${{ vars.GAME_ALERTS }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

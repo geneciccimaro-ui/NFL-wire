@@ -73,7 +73,7 @@ export function parseFeed(xml, sourceName) {
 
     let source = sourceName;
     // Google News titles look like "Headline - Outlet"; credit the real outlet.
-    if (sourceName === 'Google News') {
+    if (sourceName.startsWith('Google News')) {
       const outlet = stripHtml(tag(b, 'source'));
       if (outlet) {
         source = outlet;
@@ -82,7 +82,7 @@ export function parseFeed(xml, sourceName) {
     }
 
     let summary = stripHtml(summaryRaw);
-    if (sourceName === 'Google News' || summary.startsWith(title)) summary = '';
+    if (sourceName.startsWith('Google News') || summary.startsWith(title)) summary = '';
     if (summary.length > 400) summary = summary.slice(0, 397).replace(/\s+\S*$/, '') + '…';
 
     items.push({ title, link: cleanLink(link), source, summary, published, image: image && /^https?:/.test(image) ? image : '' });
@@ -92,9 +92,13 @@ export function parseFeed(xml, sourceName) {
 
 // ---------- Understanding a headline ----------
 
-export function detectTeams(text) {
-  const t = ` ${text.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ')} `;
-  return TEAMS.filter((team) => team.words.some((w) => t.includes(` ${w} `))).map((team) => team.abbr);
+export const normalize = (text) => ` ${text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').replace(/\b([a-z]) (?=[a-z]\b)/g, '$1')} `; // "A.J." -> "aj"
+
+// extraWords: { PHI: ['jalen hurts', ...] } for player and staff names.
+export function detectTeams(text, extraWords = {}) {
+  const t = normalize(text);
+  const has = (w) => t.includes(normalize(w));
+  return TEAMS.filter((team) => team.words.some(has) || (extraWords[team.abbr] || []).some(has)).map((team) => team.abbr);
 }
 
 const CATEGORIES = [
@@ -120,6 +124,8 @@ const INSIDER = /\b(sources?( say| tell)?|per sources?|source says|reportedly|ex
 // Analysis and opinion pieces are not breaking news even if they mention trades or injuries.
 const NOT_NEWS =
   /\b(rank\w*|mock|preview|predictions?|takeaways|grades?|power rankings|fantasy|odds|best bets|picks|film|podcast|mailbag|what we learned|winners and losers|overreactions?|quiz|debate|could|should|might|candidates|targets|ideas)\b/i;
+
+export const isAnalysis = (title) => NOT_NEWS.test(title);
 
 export function breakingScore(title, summary = '') {
   let score = 0;
@@ -216,7 +222,7 @@ export function itemId(link) {
   return h.toString(36);
 }
 
-export function mergeItems(previous, fresh, now, { keepHours = 72, maxItems = 600 } = {}) {
+export function mergeItems(previous, fresh, now, { keepHours = 72, maxItems = 800, extraWords = {} } = {}) {
   const byId = new Map(previous.map((i) => [i.id, i]));
   const byTitle = new Map(previous.map((i) => [i.title.toLowerCase(), i]));
   const added = [];
@@ -225,8 +231,11 @@ export function mergeItems(previous, fresh, now, { keepHours = 72, maxItems = 60
     if (byId.has(id) || byTitle.has(f.title.toLowerCase())) continue;
     // Feeds sometimes have missing or future dates; never trust a date later than now.
     const time = f.published && f.published <= now ? f.published : now;
-    const item = { id, ...f, time, firstSeen: now, teams: detectTeams(`${f.title} ${f.summary}`), score: breakingScore(f.title, f.summary) };
+    const teams = detectTeams(`${f.title} ${f.summary}`, extraWords);
+    if (f.team && !teams.includes(f.team)) teams.unshift(f.team);
+    const item = { id, ...f, time, firstSeen: now, teams, score: breakingScore(f.title, f.summary) };
     delete item.published;
+    delete item.team;
     byId.set(id, item);
     byTitle.set(f.title.toLowerCase(), item);
     added.push(item);

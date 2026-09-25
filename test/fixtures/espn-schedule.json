@@ -1,0 +1,14 @@
+{"team":{"abbreviation":"PHI","displayName":"Philadelphia Eagles","recordSummary":"3-0","standingSummary":"1st in NFC East"},
+ "events":[
+  {"id":"401","date":"2026-09-13T17:00Z","name":"Dallas Cowboys at Philadelphia Eagles","week":{"number":1,"text":"Week 1"},"seasonType":{"type":2,"name":"Regular Season"},
+   "competitions":[{"venue":{"fullName":"Lincoln Financial Field"},"broadcasts":[{"media":{"shortName":"FOX"}}],
+     "status":{"type":{"state":"post","completed":true,"detail":"Final","shortDetail":"Final"}},
+     "competitors":[
+       {"homeAway":"home","team":{"id":"21","abbreviation":"PHI","displayName":"Philadelphia Eagles","shortDisplayName":"Eagles"},"score":{"value":27.0,"displayValue":"27"}},
+       {"homeAway":"away","team":{"id":"6","abbreviation":"DAL","displayName":"Dallas Cowboys","shortDisplayName":"Cowboys","logos":[{"href":"https://a.espncdn.com/dal.png"}]},"score":{"value":20.0,"displayValue":"20"}}]}]},
+  {"id":"402","date":"2026-09-27T20:25Z","name":"Philadelphia Eagles at New York Giants","week":{"number":3,"text":"Week 3"},"seasonType":{"type":2},
+   "competitions":[{"broadcasts":[{"media":{"shortName":"CBS"}}],"status":{"type":{"state":"pre","detail":"Sun, September 27th at 4:25 PM EDT","shortDetail":"9/27 - 4:25 PM EDT"}},
+     "competitors":[
+       {"homeAway":"home","team":{"id":"19","abbreviation":"NYG","displayName":"New York Giants","shortDisplayName":"Giants"}},
+       {"homeAway":"away","team":{"id":"21","abbreviation":"PHI","displayName":"Philadelphia Eagles","shortDisplayName":"Eagles"}}]}]}
+ ]}
